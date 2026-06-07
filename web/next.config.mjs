@@ -5,6 +5,11 @@ const nextConfig = {
     config.resolve.fallback = { fs: false, net: false, tls: false };
     return config;
   },
+  async rewrites() {
+    const backend = process.env.API_PROXY_URL?.replace(/\/$/, "");
+    if (!backend) return [];
+    return [{ source: "/api/:path*", destination: `${backend}/:path*` }];
+  },
 };
 
 export default nextConfig;

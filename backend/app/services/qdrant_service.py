@@ -8,7 +8,10 @@ class QdrantService:
     COLLECTION = "memory_commits"
 
     def __init__(self):
-        self.client = QdrantClient(url=settings.qdrant_url, check_compatibility=False)
+        kwargs: dict = {"url": settings.qdrant_url, "check_compatibility": False}
+        if settings.qdrant_api_key:
+            kwargs["api_key"] = settings.qdrant_api_key
+        self.client = QdrantClient(**kwargs)
         self._ensure_collection()
 
     def _ensure_collection(self):

@@ -19,6 +19,7 @@ class Settings(BaseSettings):
 
     database_url: str = "postgresql+asyncpg://memoria:memoria@localhost:5432/memoria"
     qdrant_url: str = "http://localhost:6333"
+    qdrant_api_key: str = ""
     fireworks_api_key: str = ""
     fireworks_base_url: str = "https://api.fireworks.ai/inference/v1"
     fireworks_chat_model: str = "accounts/fireworks/models/deepseek-v4-pro"

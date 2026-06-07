@@ -1,0 +1,53 @@
+# Render Blueprint — deploy the FastAPI backend (frontend goes on Vercel).
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: memoria-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: QDRANT_URL
+        sync: false
+      - key: QDRANT_API_KEY
+        sync: false
+      - key: FIREWORKS_API_KEY
+        sync: false
+      - key: FIREWORKS_BASE_URL
+        value: https://api.fireworks.ai/inference/v1
+      - key: FIREWORKS_CHAT_MODEL
+        value: accounts/fireworks/models/deepseek-v4-pro
+      - key: FIREWORKS_EMBEDDING_MODEL
+        value: fireworks/qwen3-embedding-8b
+      - key: FIREWORKS_EMBEDDING_DIMENSIONS
+        value: "1536"
+      - key: MONAD_RPC_URL
+        sync: false
+      - key: CHAIN_ID
+        value: "143"
+      - key: MEMORY_TOKEN_ADDRESS
+        sync: false
+      - key: MEMORY_REGISTRY_ADDRESS
+        sync: false
+      - key: LICENSE_MANAGER_ADDRESS
+        sync: false
+      - key: ROYALTY_ENGINE_ADDRESS
+        sync: false
+      - key: MEMORY_SCORE_REGISTRY_ADDRESS
+        sync: false
+      - key: PRIVATE_KEY
+        sync: false
+      - key: ENABLE_DEMO_FLOW
+        value: "true"
+      - key: DEMO_PARENT_PRIVATE_KEY
+        sync: false
+      - key: DEMO_FORKER_PRIVATE_KEY
+        sync: false
+      - key: DEMO_BUYER_PRIVATE_KEY
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
