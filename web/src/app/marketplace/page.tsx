@@ -26,12 +26,26 @@ type MarketItem = {
 export default function MarketplacePage() {
   const { address, isConnected } = useAccount();
   const [items, setItems] = useState<MarketItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(() => {
+    setLoading(true);
+    setError(null);
     const walletParam = address ? `&wallet=${address}` : "";
     fetch(`${API_URL}/marketplace/repositories?sort=knowledge_revenue${walletParam}`)
-      .then((r) => r.json())
-      .then(setItems);
+      .then(async (r) => {
+        if (!r.ok) throw new Error(`API ${r.status}: ${await r.text()}`);
+        const data = await r.json();
+        if (!Array.isArray(data)) throw new Error("Unexpected API response");
+        return data as MarketItem[];
+      })
+      .then(setItems)
+      .catch((e: Error) => {
+        setItems([]);
+        setError(e.message);
+      })
+      .finally(() => setLoading(false));
   }, [address]);
 
   useEffect(() => {
@@ -44,6 +58,12 @@ export default function MarketplacePage() {
       <p className="text-sm text-zinc-500">
         Browse LICENSED and PUBLIC memory repositories. License prices in MEM; Knowledge Revenue is earned.
       </p>
+      {loading && <p className="text-sm text-zinc-500">Loading repositories…</p>}
+      {error && (
+        <p className="text-sm text-red-500">
+          Failed to load marketplace: {error}
+        </p>
+      )}
       <Card>
         <CardHeader><CardTitle>Knowledge Repositories</CardTitle></CardHeader>
         <CardContent>

@@ -1,0 +1,874 @@
+{
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "commitHistory",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "commits",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "commitHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "primaryParentCommitHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "parentCount",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "contentHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "embeddingHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "sourceAttributionHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "stateRoot",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "timestamp",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "creator",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "createCommit",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "commitHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "primaryParentCommitHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "parentCount",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "secondaryParentsCanonical",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "secondaryParentCommitHashes",
+          "type": "bytes32[]",
+          "internalType": "bytes32[]"
+        },
+        {
+          "name": "contentHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "embeddingHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "sourceAttributionHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "stateRoot",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "forkRepository",
+      "inputs": [
+        {
+          "name": "parentMemoryId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "forkPointCommitHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "initialCommitHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "primaryParentCommitHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "parentCount",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "secondaryParentsCanonical",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "contentHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "embeddingHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "sourceAttributionHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "stateRoot",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "metadataURI",
+          "type": "string",
+          "internalType": "string"
+        },
+        {
+          "name": "visibility",
+          "type": "uint8",
+          "internalType": "enum MemoryRegistry.Visibility"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "childMemoryId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "getCommit",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "commitHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct MemoryRegistry.MemoryCommit",
+          "components": [
+            {
+              "name": "commitHash",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "primaryParentCommitHash",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "parentCount",
+              "type": "uint8",
+              "internalType": "uint8"
+            },
+            {
+              "name": "contentHash",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "embeddingHash",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "sourceAttributionHash",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "stateRoot",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "timestamp",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "creator",
+              "type": "address",
+              "internalType": "address"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getCommitHistory",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32[]",
+          "internalType": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getRepositoryLineage",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getSecondaryParents",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "commitHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32[]",
+          "internalType": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "nextMemoryId",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "owner",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "registerRepository",
+      "inputs": [
+        {
+          "name": "genesisCommitHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "primaryParentCommitHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "parentCount",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "secondaryParentsCanonical",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "contentHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "embeddingHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "sourceAttributionHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "stateRoot",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "metadataURI",
+          "type": "string",
+          "internalType": "string"
+        },
+        {
+          "name": "visibility",
+          "type": "uint8",
+          "internalType": "enum MemoryRegistry.Visibility"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "renounceOwnership",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "repositories",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "owner",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "headCommitHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "parentMemoryId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "forkPointCommitHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "visibility",
+          "type": "uint8",
+          "internalType": "enum MemoryRegistry.Visibility"
+        },
+        {
+          "name": "metadataURI",
+          "type": "string",
+          "internalType": "string"
+        },
+        {
+          "name": "createdAt",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "secondaryParents",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "setVisibility",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "visibility",
+          "type": "uint8",
+          "internalType": "enum MemoryRegistry.Visibility"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "transferOwnership",
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "transferRepository",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "newOwner",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "updateMetadataURI",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "metadataURI",
+          "type": "string",
+          "internalType": "string"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "verifyLineage",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "repoChain",
+          "type": "tuple[]",
+          "internalType": "struct MemoryRegistry.StructuralLineageResult[]",
+          "components": [
+            {
+              "name": "memoryId",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "ancestorRepoIds",
+              "type": "uint256[]",
+              "internalType": "uint256[]"
+            },
+            {
+              "name": "headToGenesisCommits",
+              "type": "bytes32[]",
+              "internalType": "bytes32[]"
+            },
+            {
+              "name": "repositoryChainValid",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "forkLinksValid",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "commitParentChainValid",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ]
+        },
+        {
+          "name": "structurallyValid",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "event",
+      "name": "CommitRecorded",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "commitHash",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "primaryParent",
+          "type": "bytes32",
+          "indexed": false,
+          "internalType": "bytes32"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "MetadataURIUpdated",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "metadataURI",
+          "type": "string",
+          "indexed": false,
+          "internalType": "string"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OwnershipTransferred",
+      "inputs": [
+        {
+          "name": "previousOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "newOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "RepositoryForked",
+      "inputs": [
+        {
+          "name": "parentId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "childId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "owner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "RepositoryRegistered",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "owner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "genesisCommitHash",
+          "type": "bytes32",
+          "indexed": false,
+          "internalType": "bytes32"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "RepositoryTransferred",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": false,
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": false,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "VisibilityUpdated",
+      "inputs": [
+        {
+          "name": "memoryId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "visibility",
+          "type": "uint8",
+          "indexed": false,
+          "internalType": "enum MemoryRegistry.Visibility"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "error",
+      "name": "CommitExists",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "CommitNotFound",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidForkPoint",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidPrimaryParent",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidRepository",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "MergeCommitsDisabled",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "NotOwner",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "OwnableInvalidOwner",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "OwnableUnauthorizedAccount",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    }
+  ]
+}

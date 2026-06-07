@@ -20,6 +20,23 @@ from app.services.memory_score import MemoryScoreService
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 CONTRACTS_OUT = REPO_ROOT / "contracts" / "out"
+BUNDLED_ABI_DIR = Path(__file__).resolve().parents[1] / "abi"
+
+
+def _load_abi(contract_file: str, contract_name: str) -> list[dict[str, Any]]:
+    bundled = BUNDLED_ABI_DIR / f"{contract_name}.json"
+    if bundled.exists():
+        with bundled.open(encoding="utf-8") as f:
+            return json.load(f)["abi"]
+    path = CONTRACTS_OUT / contract_file / f"{contract_name}.json"
+    if not path.exists():
+        raise FileNotFoundError(
+            f"ABI not found for {contract_name}. "
+            f"Expected bundled file at {bundled} or forge artifact at {path}."
+        )
+    with path.open(encoding="utf-8") as f:
+        return json.load(f)["abi"]
+
 
 VISIBILITY_ONCHAIN = {
     Visibility.PRIVATE: 0,
@@ -37,16 +54,6 @@ class SyncResult:
     on_chain_id: int
     commits_synced: int
     tx_hashes: list[str]
-
-
-def _load_abi(contract_file: str, contract_name: str) -> list[dict[str, Any]]:
-    path = CONTRACTS_OUT / contract_file / f"{contract_name}.json"
-    if not path.exists():
-        raise FileNotFoundError(
-            f"ABI not found at {path}. Run `cd contracts && forge build` first."
-        )
-    with path.open(encoding="utf-8") as f:
-        return json.load(f)["abi"]
 
 
 def _hex32(value: str) -> bytes:

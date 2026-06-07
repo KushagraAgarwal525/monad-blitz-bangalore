@@ -1,12 +1,37 @@
 #!/usr/bin/env python3
 """Seed demo repositories for Memoria hackathon demo."""
 import asyncio
+import os
+import ssl
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend"))
+_REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(_REPO / "backend"))
 
-from app.database import async_session, init_db
+# Shell exports (Neon/Qdrant prod) must beat repo-root .env (localhost).
+if any(os.environ.get(k) for k in ("DATABASE_URL", "QDRANT_URL", "QDRANT_API_KEY", "FIREWORKS_API_KEY")):
+    os.environ["MEMORIA_SKIP_ENV_FILE"] = "1"
+
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+
+from app.config import settings
+from app.models import Base
+
+
+def _engine():
+    url = settings.database_url
+    kwargs: dict = {"echo": False}
+    if "neon.tech" in url or "ssl=require" in url:
+        kwargs["connect_args"] = {"ssl": ssl.create_default_context()}
+    return create_async_engine(url, **kwargs)
+
+
+async def init_db(engine):
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+
 from app.models import (
     MemoryRepository,
     MemoryScore,
@@ -24,7 +49,11 @@ DEMO_WALLET = "0x1111111111111111111111111111111111111111"
 
 
 async def seed():
-    await init_db()
+    host = settings.database_url.split("@")[-1].split("/")[0] if "@" in settings.database_url else settings.database_url
+    print(f"Seeding against {host} …")
+    engine = _engine()
+    session_factory = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+    await init_db(engine)
     fw = get_fireworks()
     qd = get_qdrant()
     cs = CommitService(qd)
@@ -48,7 +77,7 @@ async def seed():
         ]),
     ]
 
-    async with async_session() as db:
+    async with session_factory() as db:
         repos = []
         for title, category, commits_text in demos:
             repo = MemoryRepository(

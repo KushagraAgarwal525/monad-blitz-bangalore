@@ -6,8 +6,10 @@ const nextConfig = {
     return config;
   },
   async rewrites() {
-    const backend = process.env.API_PROXY_URL?.replace(/\/$/, "");
-    if (!backend) return [];
+    const backend =
+      process.env.API_PROXY_URL?.replace(/\/$/, "") ||
+      process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+    if (!backend || backend.startsWith("/")) return [];
     return [{ source: "/api/:path*", destination: `${backend}/:path*` }];
   },
 };

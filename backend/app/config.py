@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -10,9 +11,16 @@ _ENV_FILES = (
 )
 
 
+def _env_files() -> list[str]:
+    if os.environ.get("MEMORIA_SKIP_ENV_FILE"):
+        return []
+    files = [str(p) for p in _ENV_FILES if p.is_file()]
+    return files or [str(_REPO_ROOT / ".env")]
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=[str(p) for p in _ENV_FILES if p.is_file()] or [str(_REPO_ROOT / ".env")],
+        env_file=_env_files(),
         env_file_encoding="utf-8",
         extra="ignore",
     )
