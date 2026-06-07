@@ -11,6 +11,7 @@ from app.models import MemoryCommit, MemoryRepository, RepositoryDisplayMetadata
 from app.services.access_service import can_access_content, has_active_license, list_accessible_repositories
 from app.services.deps import get_commit_service, get_provenance_service
 from app.services.onchain_sync import record_license_purchase, sync_repository_db
+from app.services.provenance_service import ProvenanceService
 
 router = APIRouter(prefix="/repositories", tags=["repositories"])
 
