@@ -1,0 +1,12 @@
+{
+  "$schema": "Memoria mutable display metadata",
+  "title": "Quant Research Memory",
+  "description": "Research memory repository",
+  "display_tags": ["research"],
+  "category": "research",
+  "preview_text": "",
+  "image": null,
+  "cover_photo": null,
+  "external_url": "https://memoria.app/repositories/{id}",
+  "version": 1
+}
